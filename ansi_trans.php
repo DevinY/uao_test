@@ -2,19 +2,6 @@
 error_reporting(E_ALL);
 ini_set( 'display_errors','1');
 
-    function htu($v){
-        $v = &iconv("big5-hkscs","UTF8", $v);
-        preg_match_all('/&#\\d+;/u', $v,$matches);
-        foreach($matches[0] as $index=>$entitie){
-            $r = mb_convert_encoding($entitie, "UTF-8", "HTML-ENTITIES");
-            if($r!='?'){
-                $v = str_replace($entitie,$r,$v);
-            }
-        }
-        $v=stripslashes($v);
-        return $v;
-    }
-
 	$filename = "ansi_0312.txt";
 	$fp = fopen($filename, "r");
 	$str = fread($fp, filesize($filename));
